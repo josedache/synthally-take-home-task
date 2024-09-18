@@ -7,6 +7,7 @@ import clsx from "clsx";
  */
 function Task({ task }) {
   const {
+    cover,
     collaborators,
     commentCount,
     description,
@@ -18,7 +19,7 @@ function Task({ task }) {
   const collaboratorsToShow = collaborators?.slice(0, 3);
 
   return (
-    <div className="bg-[#FFFFFF] p-4 rounded-2xl">
+    <div className="bg-[#FFFFFF] p-6 rounded-2xl">
       <div className="flex items-center justify-between">
         <div
           className={clsx(
@@ -47,8 +48,13 @@ function Task({ task }) {
       </div>
 
       <div className="mb-6">
-        <h6 className="font-semibold text-lg mb-1 capitalize">{title}</h6>
-        <p className="text-xs text-[#787486]">{description}</p>
+        <h6 className="font-semibold text-lg mb-2 capitalize">{title}</h6>
+        {cover ? (
+          <img alt="cover" src={cover} className="h-32 w-full rounded mb-2" />
+        ) : null}
+        {description ? (
+          <p className="text-xs text-[#787486]">{description}</p>
+        ) : null}
       </div>
 
       <div className="flex items-center gap-2">
@@ -148,6 +154,7 @@ export default Task;
 /**
  * @typedef {{
  * id: string;
+ * cover: string;
  * priority: string;
  * title: string;
  * description: string;

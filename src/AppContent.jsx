@@ -339,9 +339,17 @@ const collaborators = faker.helpers.multiple(
 function generateTasks() {
   return {
     id: faker.database.mongodbObjectId(),
+    cover: faker.helpers.arrayElement([
+      "https://loremflickr.com/640/480?lock=1234",
+      "https://loremflickr.com/640/480/nature?lock=1234",
+      undefined,
+    ]),
     priority: faker.helpers.arrayElement(["Low", "Completed"]),
     title: faker.word.words({ count: { min: 1, max: 3 } }),
-    description: faker.lorem.lines({ min: 1, max: 3 }),
+    description: faker.helpers.arrayElement([
+      faker.lorem.lines({ min: 1, max: 3 }),
+      undefined,
+    ]),
     collaborators: faker.helpers.arrayElements(collaborators, {
       min: 1,
       max: 6,
